@@ -1,0 +1,5 @@
+0 * * * * sudo -u www-data HOME=/home/www-data python /home/www-data/snapshot.py
+
+# Enterprise grade administration(tm)
+# (this may no longer be necessary, an earlier version of IPFS had a memory leak that broke everything after a while)
+30 6 * * * killall ipfs && sleep 60 && killall ipfs

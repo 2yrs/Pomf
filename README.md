@@ -1,46 +1,33 @@
-# Pomf
-Original development environment is Nginx + PHP5.5 + MySQL, but is confirmed to work with Apache 2.4
-and newer PHP versions. Should work with any other PDO-compatible database.
+# Glop
+Included here is code for running an instance of glop.me, including the IPFS-specific scripts.
 
-# Install
-For the purposes of this guide, we won't cover setting up Nginx, PHP, MySQL,
-Node, or NPM.  So we'll just assume you already have them all running well.
+## Requirements
+Pomf's suggested setup was Nginx + PHP5.5 + MySQL, but was also confirmed to work with Apache 2.4
+and newer PHP versions. glop.me runs a standard Ubuntu LAMP stack, but Nginx should still work (note that install locations/vhosts/etc. would need to be adjusted appropriately). Python is required for the snapshot utility.
 
-## Compiling
-The assets are minified and combined using [Grunt](http://gruntjs.com/).
-
-Assuming you already have Node and NPM working, compilation is easy:
-```
-$ npm install -g grunt-cli
-$ git clone https://github.com/nokonoko/Pomf.git
-$ cd Pomf
-$ npm install
-$ grunt
-```
-After this, the pomf site is now compressed and set up inside `dist/`.
-
-### Apache
-If you are running Apache and want to compress your output when serving files, add to your `.htaccess` file:
-```
-AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/x-javascript application/json
-```
-Remember to enable `deflate_module` and `filter_module` modules in your Apache configuration file.
-
-## Configuring
-The majority of settings are in `static/includes/settings.inc.php`.  Read the 
-comments in that file for more information.
-
-For file size configuration, there is no server-side verification: we assume 
-that PHP and Nginx provide ample protection in this department.  There is,
-however, client-side configuration for max size, the `data-max-size` attribute
-on the file input in `pages/upload_form.swig`.
-
-Make sure to disable PHP from being executed on the file download domain/directory (e.g a.site.com), otherwise a attacker can upload a malicious .php file and execute it on your server.
-
-## Todo
-
-* Clean up Moe code, a lot..
-* API keys?
-
-# Contact
-I can be contacted via neku@pomf.se or twitter at [@nekunekus](https://twitter.com/nekunekus).
+## Install
+1. Follow the instructions at https://ipfs.io/docs/install/ to install IPFS.
+2. Set up the local IPFS repo:
+````
+mkdir /home/www-data
+chown -R -v www-data /home/www-data
+sudo -u www-data HOME=/home/www-data ipfs init
+````
+3. If you are using upstart, move runipfs.conf to /etc/init/, otherwise adapt it as appropriate for your system.
+4. Set up the DB from schema.sql
+5. Alter includes/settings.inc.php as appropriate
+6. For the paste utility, you will need to either:
+````
+sudo -u www-data ipfs pin add -r QmazFHudWq91G7GxuWTpyRWZ1Pc2jg3wnwc2RrgVy5GSa3
+````
+OR if that doesn't work (i.e. glop.me is offline)
+````
+sudo -u www-data ipfs add -rq paste_content/
+````
+and move the hash to paste.php:34.
+7. For the snapshot utility, move snapshot.py to /home/www-data/ and change the DB info as appropriate. You may also need to do 
+````
+sudo -u www-data ipfs object new unixfs-dir
+sudo -u www-data ipfs pin add -r QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
+````
+8. Finally, merge cron_entries with your server's crontab.

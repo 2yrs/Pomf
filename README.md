@@ -18,16 +18,16 @@ sudo -u www-data HOME=/home/www-data ipfs init
 * Alter includes/settings.inc.php as appropriate
 * For the paste utility, you will need to either:
 ````
-sudo -u www-data ipfs pin add -r QmazFHudWq91G7GxuWTpyRWZ1Pc2jg3wnwc2RrgVy5GSa3
+sudo -u www-data HOME=/home/www-data ipfs pin add -r QmazFHudWq91G7GxuWTpyRWZ1Pc2jg3wnwc2RrgVy5GSa3
 ````
 OR if that doesn't work (i.e. glop.me is offline)
 ````
-sudo -u www-data ipfs add -rq paste_content/
+sudo -u www-data HOME=/home/www-data ipfs add -rq paste_content/
 ````
 and move the hash to paste.php:34.
 * For the snapshot utility, move snapshot.py to /home/www-data/ and change the DB info as appropriate. You may also need to do 
 ````
-sudo -u www-data ipfs object new unixfs-dir
-sudo -u www-data ipfs pin add -r QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
+sudo -u www-data HOME=/home/www-data ipfs object new unixfs-dir
+sudo -u www-data HOME=/home/www-data ipfs pin add -r QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
 ````
 * Finally, merge cron_entries with your server's crontab.

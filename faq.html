@@ -1,0 +1,26 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>Glop.me &middot; FAQ</title><link rel="shortcut icon" href="favicon.ico" type="image/x-icon"><link rel="stylesheet" href="pomf.min.css"></head><body><div class="container"><div class="jumbotron"><h1>FAQ</h1>
+
+<nav><ul><li><a href="index.html">Glop</a></li><!--<li><a href="http://tracker.pomf.se">Torrent Tracker</a></li><li><a href="http://blog.pomf.se/">Blog</a></li><li><a href="irc://irc.pomf.se#cute">IRC</a></li><li><a href="https://twitter.com/nekunekus">Twitter</a></li><li><a href="http://pomf.cat">Forum</a></li><li><a href="http://moe.pomf.se">Moe Login</a></li>--><li><a href="paste.html">Paste</a></li><li><a href="https://github.com/nokonoko/Pomf">Github</a></li><li><a href="tools.html">Tools</a></li><li><a href="faq.html">FAQ</a></li></ul></nav></div>
+
+<ul>
+<li>This site works a bit differently from other Pomf clones. We use <a href="http://ipfs.io/">IPFS</a> as our backend, as opposed to storing the files directly.</li>
+<li>Consequently, Glop should be thought of as having two distinct components, the standard PHP frontend for uploading files, and an IPFS gateway for serving files.</li>
+<li>This enables a bit (A LOT) more flexibility in managing your uploads than usual.</li>
+<li>Firstly, it is possible to to grab your files through ANY IPFS gateway, both public and local by substituting in the domain name (i.e., replacing gateway.glop.me/ipfs/[hash] with gateway.ipfs.io/ipfs/[hash] for the official gateway, or localhost:8080/ipfs/[hash] if you have ipfs daemon running locally (the ideal scenario)).</li>
+<li>You can back up your files locally by running ipfs pin add -r [hash], and I intend on setting up at least a couple more servers to do exactly that for all files. So long as <strong>any</strong> node (including any you choose to host yourself) stays up your files will remain accessible permanently, even should this site itself go down at some point.</li>
+<li>If you would like to operate a Glop IPFS mirror yourself and contribute to the stability of the service, simply run ipfs name resolve QmbqE6UfCJaXST3i65zbr649s8cJCUoP9m3UFUrXcNgeDn | ipfs pin add -r (This takes a snapshot of the current state of the server, updated once hourly. Rerun it periodically to keep your node up to date)</li>
+<li>Site source repo can be found <a href="https://github.com/2yrs/Pomf">here</a></li>
+<li>All file types are allowed, and unlike Pomf both the extension AND file name are preserved.</li>
+<li>The site is on a shoe-string budget right now, please don't abuse it. Presently the max filesize is 10MiB, we'll see how it goes. All going well (read: pending donations) we'll be able to raise/remove the limit, and also add mirrors of our own.</li>
+<li>The site requires an up to date browser, and does not support Internet Exploder at all.</li>
+<li>Do not upload any illegal content, or content you do not own the rights to.</li>
+<li>To report illegal content or file a DMCA takedown request, please email toomuchglop@cock.li</li>
+</ul>
+
+<p><b>Follow the rules and tips I have set up above, please. The FAQ may also be changed and updated at any time.
+<!--<br>Go to <a href="http://blog.pomf.se">the Glop Blog</a> or <a href="http://twitter.com/nekunekus">Twitter</a> for more information.</b>-->
+</p>
+
+<!--<p class="alert alert-info"><strong>pomf.se is a free service, but our hosting bill isn't</strong> &mdash; we need almost $100 a month for that. Donations help keep pomf.se free, online, and fast. Everything (after fees) goes to the hosting bill. <span class="donate-btns"><a class="donate-btn donate-paypal" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=BHUVEZY96YZ6N" target="_BLANK"><span class="icon icon-paypal"></span> PayPal</a> <a class="donate-btn donate-bitcoin" href="bitcoin:1CrbCGSTFM5ccmjFoU4jRSQod44Ttu8nHY?label=pomf.se&amp;message=Hosting%20Bills" target="_BLANK"><span class="icon icon-bitcoin"></span> Bitcoin</a> <a class="donate-btn donate-flattr" href="https://flattr.com/submit/auto?user_id=neku&amp;url=http://pomf.se" target="_BLANK"><span class="icon icon-flattr"></span> Flattr</a></span></p>
+
+<p class="alert alert-error"><strong>Virus scans are now a daily routine</strong> &mdash; if a file gets detected it will be removed without further notice.</p></div></body></html>-->
